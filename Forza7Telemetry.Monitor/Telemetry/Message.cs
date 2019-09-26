@@ -197,68 +197,205 @@ namespace Forza7Telemetry.Monitor.Telemetry
         [JsonProperty]
         public int NumCylinders { get; set; } //Number of cylinders in the engine
 
+
+        [JsonProperty]
+        public float PositionX { get; set; }
+
+        [JsonProperty]
+        public float PositionY { get; set; }
+
+        [JsonProperty]
+        public float PositionZ { get; set; }
+
+
+        [JsonProperty]
+        public float Speed { get; set; } // meters per second
+
+        [JsonProperty]
+        public float Torque { get; set; } // watts
+
+        [JsonProperty]
+        public float Power { get; set; } // newton meter
+
+
+        [JsonProperty]
+        public float TireTempFrontLeft { get; set; }
+
+        [JsonProperty]
+        public float TireTempFrontRight { get; set; }
+
+        [JsonProperty]
+        public float TireTempRearLeft { get; set; }
+
+        [JsonProperty]
+        public float TireTempRearRight { get; set; }
+
+        [JsonProperty]
+        public float Boost { get; set; }
+
+        [JsonProperty]
+        public float Fuel { get; set; }
+
+        [JsonProperty]
+        public float DistanceTraveled { get; set; }
+
+        [JsonProperty]
+        public float BestLap { get; set; }
+
+        [JsonProperty]
+        public float LastLap { get; set; }
+
+        [JsonProperty]
+        public float CurrentLap { get; set; }
+
+        [JsonProperty]
+        public float CurrentRaceTime { get; set; }
+
+
+        [JsonProperty]
+        public int LapNumber { get; set; }
+
+        [JsonProperty]
+        public int RacePosition { get; set; }
+
+
+        [JsonProperty]
+        public int Accel { get; set; }
+
+        [JsonProperty]
+        public int Brake { get; set; }
+
+        [JsonProperty]
+        public int Clutch { get; set; }
+
+        [JsonProperty]
+        public int HandBrake { get; set; }
+
+        [JsonProperty]
+        public int Gear { get; set; }
+
+        [JsonProperty]
+        public float Steer { get; set; }
+
+        [JsonProperty]
+        public float NormalizedDrivingLine { get; set; }
+
+        [JsonProperty]
+        public float NormalizedAIBrakeDifference { get; set; }
+
         #endregion
 
         public Message(byte[] rawTelemetryData)
         {
             this.IsRaceOn = BitConverter.ToInt32(rawTelemetryData, 0);
+
             this.TimestampMS = BitConverter.ToUInt32(rawTelemetryData, 4);
+
             this.EngineMaxRpm = BitConverter.ToSingle(rawTelemetryData, 8);
             this.EngineIdleRpm = BitConverter.ToSingle(rawTelemetryData, 12);
             this.CurrentEngineRpm = BitConverter.ToSingle(rawTelemetryData, 16);
+
             this.AccelerationX = BitConverter.ToSingle(rawTelemetryData, 20);
             this.AccelerationY = BitConverter.ToSingle(rawTelemetryData, 24);
             this.AccelerationZ = BitConverter.ToSingle(rawTelemetryData, 28);
+
             this.VelocityX = BitConverter.ToSingle(rawTelemetryData, 32);
             this.VelocityY = BitConverter.ToSingle(rawTelemetryData, 36);
             this.VelocityZ = BitConverter.ToSingle(rawTelemetryData, 40);
+
             this.AngularVelocityX = BitConverter.ToSingle(rawTelemetryData, 44);
             this.AngularVelocityY = BitConverter.ToSingle(rawTelemetryData, 48);
             this.AngularVelocityZ = BitConverter.ToSingle(rawTelemetryData, 52);
+
             this.Yaw = BitConverter.ToSingle(rawTelemetryData, 56);
             this.Pitch = BitConverter.ToSingle(rawTelemetryData, 60);
             this.Roll = BitConverter.ToSingle(rawTelemetryData, 64);
+
             this.NormalizedSuspensionTravelFrontLeft = BitConverter.ToSingle(rawTelemetryData, 68);
             this.NormalizedSuspensionTravelFrontRight = BitConverter.ToSingle(rawTelemetryData, 72);
             this.NormalizedSuspensionTravelRearLeft = BitConverter.ToSingle(rawTelemetryData, 76);
             this.NormalizedSuspensionTravelRearRight = BitConverter.ToSingle(rawTelemetryData, 80);
+
             this.TireSlipRatioFrontLeft = BitConverter.ToSingle(rawTelemetryData, 84);
             this.TireSlipRatioFrontRight = BitConverter.ToSingle(rawTelemetryData, 88);
             this.TireSlipRatioRearLeft = BitConverter.ToSingle(rawTelemetryData, 92);
             this.TireSlipRatioRearRight = BitConverter.ToSingle(rawTelemetryData, 96);
+
             this.WheelRotationSpeedFrontLeft = BitConverter.ToSingle(rawTelemetryData, 100);
             this.WheelRotationSpeedFrontRight = BitConverter.ToSingle(rawTelemetryData, 104);
             this.WheelRotationSpeedRearLeft = BitConverter.ToSingle(rawTelemetryData, 108);
             this.WheelRotationSpeedRearRight = BitConverter.ToSingle(rawTelemetryData, 112);
+
             this.WheelOnRumbleStripFrontLeft = BitConverter.ToInt32(rawTelemetryData, 116);
             this.WheelOnRumbleStripFrontRight = BitConverter.ToInt32(rawTelemetryData, 120);
             this.WheelOnRumbleStripRearLeft = BitConverter.ToInt32(rawTelemetryData, 124);
             this.WheelOnRumbleStripRearRight = BitConverter.ToInt32(rawTelemetryData, 128);
+
             this.WheelInPuddleDepthFrontLeft = BitConverter.ToSingle(rawTelemetryData, 132);
             this.WheelInPuddleDepthFrontRight = BitConverter.ToSingle(rawTelemetryData, 136);
             this.WheelInPuddleDepthRearLeft = BitConverter.ToSingle(rawTelemetryData, 140);
             this.WheelInPuddleDepthRearRight = BitConverter.ToSingle(rawTelemetryData, 144);
+
             this.SurfaceRumbleFrontLeft = BitConverter.ToSingle(rawTelemetryData, 148);
             this.SurfaceRumbleFrontRight = BitConverter.ToSingle(rawTelemetryData, 152);
             this.SurfaceRumbleRearLeft = BitConverter.ToSingle(rawTelemetryData, 156);
             this.SurfaceRumbleRearRight = BitConverter.ToSingle(rawTelemetryData, 160);
+
             this.TireSlipAngleFrontLeft = BitConverter.ToSingle(rawTelemetryData, 164);
             this.TireSlipAngleFrontRight = BitConverter.ToSingle(rawTelemetryData, 168);
             this.TireSlipAngleRearLeft = BitConverter.ToSingle(rawTelemetryData, 172);
             this.TireSlipAngleRearRight = BitConverter.ToSingle(rawTelemetryData, 176);
+
             this.TireCombinedSlipFrontLeft = BitConverter.ToSingle(rawTelemetryData, 180);
             this.TireCombinedSlipFrontRight = BitConverter.ToSingle(rawTelemetryData, 184);
             this.TireCombinedSlipRearLeft = BitConverter.ToSingle(rawTelemetryData, 188);
             this.TireCombinedSlipRearRight = BitConverter.ToSingle(rawTelemetryData, 192);
+
             this.SuspensionTravelMetersFrontLeft = BitConverter.ToSingle(rawTelemetryData, 196);
             this.SuspensionTravelMetersFrontRight = BitConverter.ToSingle(rawTelemetryData, 200);
             this.SuspensionTravelMetersRearLeft = BitConverter.ToSingle(rawTelemetryData, 204);
             this.SuspensionTravelMetersRearRight = BitConverter.ToSingle(rawTelemetryData, 208);
+
             this.CarOrdinal = BitConverter.ToInt32(rawTelemetryData, 212);
             this.CarClass = BitConverter.ToInt32(rawTelemetryData, 216);
             this.CarPerformanceIndex = BitConverter.ToInt32(rawTelemetryData, 220);
             this.DrivetrainType = BitConverter.ToInt32(rawTelemetryData, 224);
             this.NumCylinders = BitConverter.ToInt32(rawTelemetryData, 228);
+
+            this.PositionX = BitConverter.ToSingle(rawTelemetryData, startIndex: 232);
+            this.PositionY = BitConverter.ToSingle(rawTelemetryData, startIndex: 236);
+            this.PositionZ = BitConverter.ToSingle(rawTelemetryData, startIndex: 240);
+
+            this.Speed = BitConverter.ToSingle(rawTelemetryData, startIndex: 244);
+            this.Power = BitConverter.ToSingle(rawTelemetryData, startIndex: 248);
+            this.Torque = BitConverter.ToSingle(rawTelemetryData, startIndex: 252);
+
+            this.TireTempFrontLeft = BitConverter.ToSingle(rawTelemetryData, startIndex: 256);
+            this.TireTempFrontRight = BitConverter.ToSingle(rawTelemetryData, startIndex: 260);
+            this.TireTempRearLeft = BitConverter.ToSingle(rawTelemetryData, startIndex: 264);
+            this.TireTempRearRight = BitConverter.ToSingle(rawTelemetryData, startIndex: 268);
+
+            this.Boost = BitConverter.ToSingle(rawTelemetryData, startIndex: 272);
+            this.Fuel = BitConverter.ToSingle(rawTelemetryData, startIndex: 276);
+            this.DistanceTraveled = BitConverter.ToSingle(rawTelemetryData, startIndex: 280);
+            this.BestLap = BitConverter.ToSingle(rawTelemetryData, startIndex: 284);
+            this.LastLap = BitConverter.ToSingle(rawTelemetryData, startIndex: 288);
+            this.CurrentLap = BitConverter.ToSingle(rawTelemetryData, startIndex: 292);
+            this.CurrentRaceTime = BitConverter.ToSingle(rawTelemetryData, startIndex: 296);
+
+            this.LapNumber = BitConverter.ToUInt16(rawTelemetryData, startIndex: 300);
+            this.RacePosition = (int)rawTelemetryData[302];
+
+            this.Accel = (int)rawTelemetryData[303];
+            this.Brake = (int)rawTelemetryData[304];
+            this.Clutch = (int)rawTelemetryData[305];
+            this.HandBrake = (int)rawTelemetryData[306];
+            this.Gear = (int)rawTelemetryData[307];
+            this.Steer = (sbyte)rawTelemetryData[308];
+            
+            this.NormalizedDrivingLine = (int)rawTelemetryData[309];
+            this.NormalizedAIBrakeDifference = (int)rawTelemetryData[310];
+
         }
     }
 }
